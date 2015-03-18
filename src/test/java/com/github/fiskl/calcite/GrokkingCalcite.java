@@ -15,6 +15,7 @@ import org.apache.calcite.sql.type.SqlTypeName;
 import com.github.fiskl.calcite.database.Schema;
 import com.github.fiskl.calcite.database.tables.BaseTable;
 import com.github.fiskl.calcite.database.tables.SyntheticKVTable;
+import com.github.fiskl.calcite.database.tables.SyntheticTable;
 import com.github.fiskl.calcite.database.tables.TableFieldType;
 import com.github.fiskl.calcite.database.tables.TablePath;
 
@@ -54,7 +55,8 @@ public class GrokkingCalcite {
 				field("primary2","primary2",SqlTypeName.VARCHAR),
 				field("primary3","primary3",SqlTypeName.BIGINT))));
 		tables.put("kv", new SyntheticKVTable(path(),field("kvArray","kvArray",SqlTypeName.DOUBLE)));
-		tables.put("secondary", new SyntheticKVTable(path("tblArray.inner"), field("value", "value", SqlTypeName.BOOLEAN)));
+		tables.put("secondary", new SyntheticTable(path("tblArray.inner"), 
+				Arrays.asList(field("value", "value", SqlTypeName.BOOLEAN))));
 		return tables;
 	}
 
